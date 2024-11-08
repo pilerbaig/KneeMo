@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>PT Dashboard</h1>
+    <label for="patient-select">Select Patient:</label>
+    <select id="patient-select" onchange="setSelectedPatient()">
+        <option value="">--Choose a Patient--</option>
+    </select>
+    <button onclick="navigateTo('exercises.html')">Exercises</button>
+    <button onclick="navigateTo('progress.html')">Progress</button>
+    <button onclick="alert('Settings feature coming soon!')">Settings</button>
+    <script src="script.js"></script>
+</body>
+
+</html>

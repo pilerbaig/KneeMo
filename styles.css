@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#session-data {
+    width: 90%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.date-container {
+    border: 1px solid #aaa;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    text-align: left;
+}
+
+.date-container h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.exercise-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 8px 0;
+    background-color: #fff;
+}
+
+.exercise-container p {
+    margin: 3px 0;
+    font-size: 14px;
+}
