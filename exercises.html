@@ -9,15 +9,31 @@
 </head>
 
 <body>
-    <h1>Exercises</h1>
-    <div id="exercise-list">
-        <button>Exercise 1</button>
-        <button>Exercise 2</button>
-        <button>Exercise 3</button>
-        <!-- Add more exercise buttons as needed -->
-        <button class="add-exercise">+ Add exercise</button>
-    </div>
-    <button onclick="navigateTo('index.html')">Save</button>
+    <header>
+        <h1>Exercises</h1>
+    </header>
+
+    <section id="exercise-list">
+        <h2>Available Exercises</h2>
+        <div class="exercise-buttons">
+            <!-- Exercise buttons will be dynamically added here -->
+        </div>
+
+        <button class="add-exercise">+ Add Exercise</button>
+
+        <!-- Input fields for adding a new exercise -->
+        <div id="new-exercise-container" style="display: none;">
+            <input type="text" id="new-exercise-input" placeholder="Enter new exercise" />
+            <input type="number" id="new-reps-input" placeholder="Enter number of reps" />
+            <button id="save-exercise">Save Exercise</button>
+            <button id="cancel-exercise">Cancel</button>
+        </div>
+    </section>
+
+    <footer>
+        <button onclick="navigateTo('index.html')">Save</button>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 

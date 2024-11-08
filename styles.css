@@ -1,51 +1,107 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f9;
 }
 
-h1 {
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+section#exercise-list {
     margin: 20px;
 }
 
-button {
+.exercise-buttons button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
     cursor: pointer;
 }
 
-#session-data {
-    width: 90%;
-    max-width: 600px;
+.exercise-buttons button:hover {
+    background-color: #45a049;
+}
+
+.add-exercise {
+    background-color: #2196F3;
+}
+
+.add-exercise:hover {
+    background-color: #0b7dda;
+}
+
+#new-exercise-container {
     margin-top: 20px;
 }
 
-.date-container {
-    border: 1px solid #aaa;
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #f0f0f0;
-    text-align: left;
-}
-
-.date-container h2 {
-    margin: 0 0 10px 0;
-    color: #333;
-}
-
-.exercise-container {
-    border: 1px solid #ccc;
+#new-exercise-input {
     padding: 10px;
-    margin: 8px 0;
-    background-color: #fff;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
 }
 
-.exercise-container p {
-    margin: 3px 0;
+button#save-exercise,
+button#cancel-exercise {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button#save-exercise {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button#cancel-exercise {
+    background-color: #f44336;
+    color: white;
+}
+
+button#save-exercise:hover {
+    background-color: #45a049;
+}
+
+button#cancel-exercise:hover {
+    background-color: #e53935;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer button:hover {
+    background-color: #45a049;
+}
+
+/* Style for remove buttons */
+.remove-exercise {
+    background-color: #f44336;
+    color: white;
     font-size: 14px;
+    margin-left: 10px;
+}
+
+.remove-exercise:hover {
+    background-color: #e53935;
 }
