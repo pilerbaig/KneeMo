@@ -9,7 +9,15 @@
 </head>
 
 <body>
-    <h1>Home Sessions</h1>
+    <header>
+        <div class="nav-buttons">
+            <button onclick="navigateTo('index.html')">Dashboard</button>
+            <button onclick="navigateTo('exercises.html')">Exercises</button>
+            <button onclick="navigateTo('progress.html')">Progress</button>
+            <button onclick="alert('Settings feature coming soon!')">Settings</button>
+        </div>
+        <h1>Home Sessions</h1>
+    </header>
     <div id="session-data"></div>
     <button onclick="navigateTo('progress.html')">Back to Progress</button>
     <script src="script.js"></script>

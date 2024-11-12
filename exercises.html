@@ -10,6 +10,12 @@
 
 <body>
     <header>
+        <div class="nav-buttons">
+            <button onclick="navigateTo('index.html')">Dashboard</button>
+            <button onclick="navigateTo('exercises.html')">Exercises</button>
+            <button onclick="navigateTo('progress.html')">Progress</button>
+            <button onclick="alert('Settings feature coming soon!')">Settings</button>
+        </div>
         <h1>Exercises</h1>
     </header>
 
@@ -23,7 +29,13 @@
 
         <!-- Input fields for adding a new exercise -->
         <div id="new-exercise-container" style="display: none;">
-            <input type="text" id="new-exercise-input" placeholder="Enter new exercise" />
+            <select id="exercise-dropdown">
+                <option value="">--Select an Exercise--</option>
+                <option value="Straight Leg Raises">Straight Leg Raises</option>
+                <option value="Bed Supported Knee Bends">Bed Supported Knee Bends</option>
+                <option value="Sitting Unsupported Knee Bends">Sitting Unsupported Knee Bends</option>
+                <option value="Prone Knee Bend">Prone Knee Bend</option>
+            </select>
             <input type="number" id="new-reps-input" placeholder="Enter number of reps" />
             <button id="save-exercise">Save Exercise</button>
             <button id="cancel-exercise">Cancel</button>

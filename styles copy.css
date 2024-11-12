@@ -1,0 +1,193 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    align-items: center;
+    background-color: #004080;
+    padding: 15px;
+}
+
+/* header {
+    display: flex;
+    align-items: center;
+    background-color: #f1e500;
+    padding: 10px;
+} */
+
+header .nav-buttons {
+    display: flex;
+    margin-left: 0;
+}
+
+header .nav-buttons button {
+    margin-right: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0059b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+header .nav-buttons button:hover {
+    background-color: #003d80;
+    transform: translateY(-2px);
+}
+
+/* Dashboard Header */
+h1 {
+    color: #004080;
+    font-size: 2em;
+    margin: 20px;
+    text-align: center;
+}
+
+/* Select Dropdown */
+label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 20px 5px 20px;
+    color: #333;
+}
+
+#patient-select {
+    display: block;
+    margin: 0 20px 20px 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 40px);
+    max-width: 400px;
+}
+
+section#exercise-list {
+    margin: 20px;
+}
+
+.exercise-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f1e500;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.exercise-buttons button:hover {
+    background-color: #f1e500;
+}
+
+.add-exercise {
+    background-color: #2196F3;
+}
+
+.add-exercise:hover {
+    background-color: #0b7dda;
+}
+
+#new-exercise-container {
+    margin-top: 20px;
+}
+
+#new-exercise-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+button#save-exercise,
+button#cancel-exercise {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button#save-exercise {
+    background-color: #f1e500;
+    color: white;
+}
+
+button#cancel-exercise {
+    background-color: #f44336;
+    color: white;
+}
+
+button#save-exercise:hover {
+    background-color: #f1e500;
+}
+
+button#cancel-exercise:hover {
+    background-color: #e53935;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f1e500;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer button:hover {
+    background-color: #f1e500;
+}
+
+/* Style for remove buttons */
+.remove-exercise {
+    background-color: #f44336;
+    color: white;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.remove-exercise:hover {
+    background-color: #e53935;
+}
+
+.date-container {
+    background-color: #fffaa2;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.date-container h2 {
+    margin: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #fffaa2;
+    color: #333;
+}
+
+.exercise-container {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fffff5;
+    border-radius: 5px;
+    border: 1px solid #fffff5;
+}
+
+.exercise-container p {
+    margin: 5px 0;
+}

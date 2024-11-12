@@ -107,7 +107,7 @@ function initializeExercisePage() {
 
     const addExerciseButton = document.querySelector('.add-exercise');
     const newExerciseContainer = document.getElementById('new-exercise-container');
-    const newExerciseInput = document.getElementById('new-exercise-input');
+    const exerciseDropdown = document.getElementById('exercise-dropdown');  // Dropdown for exercise selection
     const newRepsInput = document.getElementById('new-reps-input');
     const saveExerciseButton = document.getElementById('save-exercise');
     const cancelExerciseButton = document.getElementById('cancel-exercise');
@@ -119,16 +119,25 @@ function initializeExercisePage() {
 
     cancelExerciseButton.addEventListener('click', resetExerciseForm);
     saveExerciseButton.addEventListener('click', () => {
-        const newExercise = newExerciseInput.value.trim();
+        const selectedExercise = exerciseDropdown.value;
         const newReps = newRepsInput.value.trim();
-        if (newExercise && newReps && currentPatientId) {
-            addExerciseToPatient(currentPatientId, newExercise, newReps);
-            saveExerciseToSheet(currentPatientId, newExercise, newReps);
+        if (selectedExercise && newReps && currentPatientId) {
+            addExerciseToPatient(currentPatientId, selectedExercise, newReps);
+            saveExerciseToSheet(currentPatientId, selectedExercise, newReps);
             resetExerciseForm();
         } else {
-            alert('Please select a patient and enter both exercise name and rep count.');
+            alert('Please select an exercise and enter a rep count.');
         }
     });
+}
+
+// Reset the exercise input form
+function resetExerciseForm() {
+    const newExerciseContainer = document.getElementById('new-exercise-container');
+    document.getElementById('exercise-dropdown').value = '';  // Reset dropdown
+    document.getElementById('new-reps-input').value = '';
+    newExerciseContainer.style.display = 'none';
+    document.querySelector('.add-exercise').style.display = 'block';
 }
 
 // Display exercises for the selected patient
@@ -205,20 +214,64 @@ function resetExerciseForm() {
 // Display Home Sessions data grouped by date
 function displayHomeSessions(rows) {
     const sessionDataDiv = document.getElementById('session-data');
-    sessionDataDiv.innerHTML = rows.slice(1).reduce((html, row) => {
-        const [id, date, exercise, rep_count, total_count, pain_level, comments] = row;
-        return html + `
-            <div class="date-container">
-                <h2>Date: ${date}</h2>
-                <div class="exercise-container">
-                    <p><strong>Exercise:</strong> ${exercise}</p>
-                    <p><strong>Reps:</strong> ${rep_count}</p>
-                    <p><strong>Total Count:</strong> ${total_count}</p>
-                    <p><strong>Pain Level:</strong> ${pain_level}</p>
-                    <p><strong>Comments:</strong> ${comments || 'No comments'}</p>
-                </div>
-            </div>`;
-    }, '');
+    sessionDataDiv.innerHTML = '';  // Clear previous content
+
+    // Retrieve the selected patient ID from localStorage
+    const currentPatientId = localStorage.getItem('selectedPatientID');
+    if (!currentPatientId) {
+        alert("Please select a patient on the dashboard first.");
+        return;
+    }
+
+    // Skip header row, filter sessions by patient ID, and group sessions by date
+    const sessionsByDate = rows.slice(1).reduce((acc, row) => {
+        const [id, session, date, exercise, count, total_count, pain_level, pain_location, comments] = row;
+
+        // Only process rows that match the current patient ID
+        if (id === currentPatientId) {
+            if (!acc[date]) {
+                acc[date] = [];
+            }
+            acc[date].push({
+                exercise,
+                count,
+                total_count,
+                pain_level: pain_level || 'Not specified',  // Default to "Not specified" if empty
+                pain_location: pain_location || 'Not specified',  // Default to "Not specified" if empty
+                comments
+            });
+        }
+        return acc;
+    }, {});
+
+    // Generate HTML for each date's sessions
+    for (const date in sessionsByDate) {
+        const dateContainer = document.createElement('div');
+        dateContainer.classList.add('date-container');
+
+        // Add a header for the date
+        const dateHeader = document.createElement('h2');
+        dateHeader.textContent = `Date: ${date}`;
+        dateContainer.appendChild(dateHeader);
+
+        // Add each exercise session under the date
+        sessionsByDate[date].forEach(session => {
+            const exerciseContainer = document.createElement('div');
+            exerciseContainer.classList.add('exercise-container');
+
+            exerciseContainer.innerHTML = `
+                <p><strong>Exercise:</strong> ${session.exercise}</p>
+                <p><strong>Count:</strong> ${session.count}</p>
+                <p><strong>Total Count:</strong> ${session.total_count}</p>
+                <p><strong>Pain Level:</strong> ${session.pain_level}</p>
+                <p><strong>Pain Location:</strong> ${session.pain_location}</p>
+                <p><strong>Comments:</strong> ${session.comments || 'No comments'}</p>
+            `;
+            dateContainer.appendChild(exerciseContainer);
+        });
+
+        sessionDataDiv.appendChild(dateContainer);
+    }
 }
 
 // Save new exercise data to Google Sheets
