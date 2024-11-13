@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress</title>
+    <title>Overall</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -14,19 +14,18 @@
             <button onclick="navigateTo('index.html')">Dashboard</button>
             <button onclick="navigateTo('exercises.html')">Exercises</button>
             <button onclick="navigateTo('progress.html')">Progress</button>
-            <button onclick="alert('Settings feature coming soon!')">Settings</button>
+            <button onclick="navigateTo('alerts.html')">Alerts</button>
         </div>
     </header>
 
-    <h1>Progress</h1>
-
-    <div class="body-buttons">
-        <button onclick="navigateTo('alerts.html')">Alerts</button>
-        <button onclick="navigateTo('home_sessions.html')">Home Sessions</button>
-        <button onclick="navigateTo('overall.html')">Overall</button>
-        <button onclick="navigateTo('index.html')">Back to Dashboard</button>
+    <h1>Overall Progress</h1>
+    <div id="chart-container" class="chart-wrapper">
+        <canvas id="romChart"></canvas>
     </div>
 
+    <button onclick="navigateTo('progress.html')" class="back-button">Back to Progress</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -219,3 +219,35 @@ footer button:hover {
     list-style-type: none;
     padding: 0;
 }
+
+/* Centering and sizing for the chart */
+.chart-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto;
+    /* This centers the wrapper div itself */
+}
+
+/* Size for the chart canvas */
+#romChart {
+    max-width: 600px;
+    width: 100%;
+    height: 200px;
+}
+
+.body-buttons {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+
+}
+
+.body-buttons button {
+    width: 200px;
+    /* Or whatever width you prefer */
+}

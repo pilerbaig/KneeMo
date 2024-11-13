@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initializeAlertsPage();
     }
     if (page.includes('home_sessions.html')) fetchData(SHEET_NAME_SESSIONS, displayHomeSessions);
+    if (page.includes('overall.html')) initializeOverallPage();
 
     // Common page navigation function
     window.navigateTo = (page) => window.location.href = page;
@@ -343,7 +344,7 @@ function removeExerciseFromSheet(patientId, exerciseName) {
 
 // Initialize the Alerts Page
 function initializeAlertsPage() {
-    fetchData('sessions', processAlertsData);
+    fetchData(SHEET_NAME_SESSIONS, processAlertsData);
 }
 
 // Process the session data to identify pain and incomplete/missed days
@@ -433,5 +434,96 @@ function displayAlerts(painDays, incompleteDays) {
         `;
 
         incompleteDaysList.appendChild(incompleteContainer);
+    });
+}
+
+// Initialize the Overall Page
+function initializeOverallPage() {
+    fetchData(SHEET_NAME_SESSIONS, processROMData);
+}
+
+// Process ROM data for the past week
+function processROMData(rows) {
+    const currentPatientId = localStorage.getItem('selectedPatientID');
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+    const romData = [];
+
+    rows.slice(1).forEach(row => {
+        const [timestamp, id, session, exercise, count, totalCount] = row;
+        const date = new Date(timestamp);
+
+        if (
+            id == currentPatientId &&
+            exercise == "ROM" &&
+            date >= oneWeekAgo
+        ) {
+            romData.push({
+                date: date.toLocaleDateString(),
+                lowROM: parseFloat(count),
+                highROM: parseFloat(totalCount)
+            });
+        }
+    });
+
+    displayROMChart(romData);
+}
+
+// Display the ROM chart
+function displayROMChart(romData) {
+    const ctx = document.getElementById('romChart').getContext('2d');
+
+    const dates = romData.map(data => data.date);
+    const lowROMValues = romData.map(data => data.lowROM);
+    const highROMValues = romData.map(data => data.highROM);
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dates,
+            datasets: [
+                {
+                    label: 'Low ROM',
+                    data: lowROMValues,
+                    // borderColor: 'rgba(228, 178, 0, 0.8)',
+                    backgroundColor: ['rgba(228, 178, 0, 0.8)'],
+                    fill: false,
+                    tension: 0.1
+                },
+                {
+                    label: 'High ROM',
+                    data: highROMValues,
+                    backgroundColor: ['rgba(255, 236, 0, 1)'],
+                    fill: false,
+                    tension: 0.1
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    },
+                    stacked: true // Stack the bars on the x-axis for overlapping
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'ROM'
+                    },
+                    beginAtZero: true,
+                    stacked: false // Ensure values are not stacked on the y-axis
+                }
+            }
+        }
     });
 }
