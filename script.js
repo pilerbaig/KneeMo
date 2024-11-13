@@ -1,5 +1,6 @@
 const API_KEY = 'AIzaSyD_8IZdviAY2_TXEikBMW9fsc5fyTduvdI';
 const SPREADSHEET_ID = '1-i7rr6RLaqwMRTvryLOcdTMXluNGCKgQJQITrA7wdck';
+// const SHEET_NAME_SESSIONS = 'sessions_copy';
 const SHEET_NAME_SESSIONS = 'sessions';
 const SHEET_NAME_PATIENTS = 'patients';
 const SHEET_NAME_EXERCISES = 'exercises';
@@ -15,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize the page and load exercises for the selected patient
         initializeExercisePage();
         fetchData(SHEET_NAME_EXERCISES, displayExercises);
+    }
+    if (window.location.pathname.includes('alerts.html')) {
+        initializeAlertsPage();
     }
     if (page.includes('home_sessions.html')) fetchData(SHEET_NAME_SESSIONS, displayHomeSessions);
 
@@ -129,6 +133,14 @@ function initializeExercisePage() {
             alert('Please select an exercise and enter a rep count.');
         }
     });
+
+    // Hide the form and reset inputs when the "Cancel" button is clicked
+    cancelExerciseButton.addEventListener('click', () => {
+        newExerciseContainer.style.display = 'none';  // Hide the exercise input fields
+        addExerciseButton.style.display = 'block';    // Show the "Add Exercise" button
+        resetExerciseForm();                          // Reset the dropdown and reps input
+    });
+
 }
 
 // Reset the exercise input form
@@ -225,14 +237,14 @@ function displayHomeSessions(rows) {
 
     // Skip header row, filter sessions by patient ID, and group sessions by date
     const sessionsByDate = rows.slice(1).reduce((acc, row) => {
-        const [id, session, date, exercise, count, total_count, pain_level, pain_location, comments] = row;
+        const [timestamp, id, session, exercise, count, total_count, pain_level, pain_location, comments] = row;
 
         // Only process rows that match the current patient ID
-        if (id === currentPatientId) {
-            if (!acc[date]) {
-                acc[date] = [];
+        if (id === currentPatientId && !(exercise == 'Complete')) {
+            if (!acc[timestamp.slice(0, 10)]) {
+                acc[timestamp.slice(0, 10)] = [];
             }
-            acc[date].push({
+            acc[timestamp.slice(0, 10)].push({
                 exercise,
                 count,
                 total_count,
@@ -327,4 +339,99 @@ function removeExerciseFromSheet(patientId, exerciseName) {
         })
         .then(data => console.log('Exercise removed successfully:', data))
         .catch(error => console.error('Error removing exercise:', error));
+}
+
+// Initialize the Alerts Page
+function initializeAlertsPage() {
+    fetchData('sessions', processAlertsData);
+}
+
+// Process the session data to identify pain and incomplete/missed days
+function processAlertsData(rows) {
+    const painDays = [];
+    const incompleteDays = [];
+    const sessionsByDate = {};
+
+    // Organize sessions by date and ID
+    rows.slice(1).forEach(row => {
+        const [timestamp, id, sessionDate, exercise, count, totalCount, painRating, painLocation, comments] = row;
+        const date = timestamp.slice(0, 10);  // Extract the date part from the timestamp (YYYY-MM-DD)
+
+        if (!sessionsByDate[date]) {
+            sessionsByDate[date] = [];
+        }
+        sessionsByDate[date].push({ exercise, count, painRating: parseInt(painRating) || 0 });
+    });
+
+    // Check each date for pain and completion status
+    Object.keys(sessionsByDate).forEach(date => {
+        const exercises = sessionsByDate[date];
+        let hasPain = false;
+        let hasComplete = false;
+        let painDayEntry = [];
+
+        exercises.forEach(exercise => {
+            // Identify pain days: exercises with pain level >= 4
+            if (exercise.painRating >= 4) {
+                hasPain = true;
+                painDayEntry.push(`${exercise.exercise} (Pain: ${exercise.painRating})`);
+            }
+            // Check if exercise is marked as "complete"
+            if (exercise.exercise.toLowerCase() === "complete") {
+                hasComplete = true;
+            }
+        });
+
+        // Record pain days
+        if (hasPain) {
+            painDays.push({ date, exercises: painDayEntry });
+        }
+
+        // Record incomplete or missed days
+        if (!hasComplete) {
+            if (exercises.length === 0) {
+                incompleteDays.push({ date, status: "Missed" });
+            } else {
+                incompleteDays.push({ date, status: "Incomplete" });
+            }
+        }
+    });
+
+    // Display alerts on the page
+    displayAlerts(painDays, incompleteDays);
+}
+
+// Display the alerts for pain days and incomplete/missed days
+function displayAlerts(painDays, incompleteDays) {
+    const painDaysList = document.getElementById('pain-days-list');
+    const incompleteDaysList = document.getElementById('incomplete-days-list');
+
+    painDaysList.innerHTML = ''; // Clear existing content
+    incompleteDaysList.innerHTML = ''; // Clear existing content
+
+    // Display pain days with styled containers
+    painDays.forEach(entry => {
+        const painContainer = document.createElement('div');
+        painContainer.classList.add('alert-container');
+
+        painContainer.innerHTML = `
+            <h3>Date: ${entry.date}</h3>
+            <p><strong>Exercises:</strong> ${entry.exercises.join(', ')}</p>
+        `;
+
+        painDaysList.appendChild(painContainer);
+    });
+
+    // Display incomplete/missed days with styled containers
+    incompleteDays.forEach(entry => {
+        const incompleteContainer = document.createElement('div');
+        incompleteContainer.classList.add('alert-container');
+
+        incompleteContainer.innerHTML = `
+            <h3>Date: ${entry.date}</h3>
+            <p><strong>Status:</strong> ${entry.status}</p>
+        `;
+
+        incompleteDaysList.appendChild(incompleteContainer);
+    });
 }

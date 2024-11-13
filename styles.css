@@ -178,3 +178,44 @@ footer button:hover {
 .remove-exercise:hover {
     background-color: #e65100;
 }
+
+/* Styling for the main alerts container */
+#alerts-container {
+    margin: 20px;
+}
+
+/* Container styling for each alert category (Pain Days, Incomplete/Missed Days) */
+.alert-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fffde7;
+    /* Light blue background */
+    border: 1px solid #ffecb3;
+    /* Blue border */
+    border-radius: 8px;
+}
+
+/* Styling for each individual alert entry */
+.alert-container {
+    background-color: #fff9c4;
+    /* Light background */
+    border-left: 4px solid #f44336;
+    /* Red border for individual alerts */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.alert-container h3 {
+    margin-top: 0;
+}
+
+.alert-container p {
+    margin: 5px 0;
+}
+
+/* Remove list styles from alert lists */
+.alert-list {
+    list-style-type: none;
+    padding: 0;
+}

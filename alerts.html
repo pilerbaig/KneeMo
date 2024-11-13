@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress</title>
+    <title>Alerts</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -16,12 +16,23 @@
             <button onclick="navigateTo('progress.html')">Progress</button>
             <button onclick="alert('Settings feature coming soon!')">Settings</button>
         </div>
-        <h1>Progress</h1>
     </header>
-    <button onclick="navigateTo('alerts.html')">Alerts</button>
-    <button onclick="navigateTo('home_sessions.html')">Home Sessions</button>
-    <button onclick="alert('Overall feature coming soon!')">Overall</button>
-    <button onclick="navigateTo('index.html')">Back to Dashboard</button>
+
+    <h1>Alerts</h1>
+    <div id="alerts-container">
+
+        <div class="alert-section">
+            <h2>Pain Days</h2>
+            <div id="pain-days-list" class="alert-list"></div>
+        </div>
+
+        <div class="alert-section">
+            <h2>Incomplete/Missed Days</h2>
+            <div id="incomplete-days-list" class="alert-list"></div>
+        </div>
+
+    </div>
+
     <script src="script.js"></script>
 </body>
 

@@ -71,9 +71,115 @@ label {
     max-width: 400px;
 }
 
+/* Buttons */
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 90, 200, 0.4);
+}
+
+/* Main Page Buttons */
+button.navigate-button {
+    margin: 0 20px 20px 20px;
+    background-color: #0066cc;
+    color: white;
+}
+
+button.navigate-button:hover {
+    background-color: #004c99;
+}
+
 section#exercise-list {
     margin: 20px;
 }
+
+/* Dashboard Styling */
+#session-data,
+.exercise-buttons,
+.date-container {
+    margin: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.date-container h2 {
+    color: #004080;
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Exercise and Session Containers */
+.exercise-container,
+.exercise-entry {
+    background-color: #e6f2ff;
+    border: 1px solid #cce0ff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.exercise-container p,
+.exercise-entry p {
+    margin: 5px 0;
+}
+
+/* Add Exercise Button */
+.add-exercise {
+    background-color: #28a745;
+    color: white;
+    margin-top: 10px;
+}
+
+.add-exercise:hover {
+    background-color: #218838;
+}
+
+/* Footer Button Styling */
+footer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+footer button:hover {
+    background-color: #004c99;
+}
+
+/* Remove Button */
+.remove-exercise {
+    background-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.remove-exercise:hover {
+    background-color: #c82333;
+}
+
+/* ############# */
 
 .exercise-buttons button {
     margin: 10px;
