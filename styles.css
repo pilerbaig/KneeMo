@@ -79,6 +79,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-left: 20px;
 }
 
 button:hover {
@@ -143,6 +144,7 @@ button.navigate-button:hover {
     background-color: #fdd835;
     color: #333;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .add-exercise:hover {
@@ -168,7 +170,7 @@ footer button:hover {
 
 /* Remove Button */
 .remove-exercise {
-    background-color: #f57f17;
+    background-color: #ff0000;
     color: white;
     font-size: 14px;
     margin-left: 10px;
@@ -176,7 +178,7 @@ footer button:hover {
 }
 
 .remove-exercise:hover {
-    background-color: #e65100;
+    background-color: #b90000;
 }
 
 /* Styling for the main alerts container */

@@ -241,7 +241,7 @@ function displayHomeSessions(rows) {
         const [timestamp, id, session, exercise, count, total_count, pain_level, pain_location, comments] = row;
 
         // Only process rows that match the current patient ID
-        if (id === currentPatientId && !(exercise == 'Complete')) {
+        if (id === currentPatientId && !(exercise == 'Complete') && !(exercise == 'ROM')) {
             if (!acc[timestamp.slice(0, 10)]) {
                 acc[timestamp.slice(0, 10)] = [];
             }
@@ -252,6 +252,15 @@ function displayHomeSessions(rows) {
                 pain_level: pain_level || 'Not specified',  // Default to "Not specified" if empty
                 pain_location: pain_location || 'Not specified',  // Default to "Not specified" if empty
                 comments
+            });
+        } else if (id === currentPatientId && (exercise == 'ROM')) {
+            if (!acc[timestamp.slice(0, 10)]) {
+                acc[timestamp.slice(0, 10)] = [];
+            }
+            acc[timestamp.slice(0, 10)].push({
+                exercise,
+                count,
+                total_count
             });
         }
         return acc;
@@ -272,14 +281,22 @@ function displayHomeSessions(rows) {
             const exerciseContainer = document.createElement('div');
             exerciseContainer.classList.add('exercise-container');
 
-            exerciseContainer.innerHTML = `
+            if (!(session.exercise == 'ROM')) {
+                exerciseContainer.innerHTML = `
                 <p><strong>Exercise:</strong> ${session.exercise}</p>
-                <p><strong>Count:</strong> ${session.count}</p>
-                <p><strong>Total Count:</strong> ${session.total_count}</p>
+                <p><strong>Reps:</strong> ${session.count} / ${session.total_count}</p>
                 <p><strong>Pain Level:</strong> ${session.pain_level}</p>
                 <p><strong>Pain Location:</strong> ${session.pain_location}</p>
                 <p><strong>Comments:</strong> ${session.comments || 'No comments'}</p>
             `;
+            }
+            else {
+                exerciseContainer.innerHTML = `
+                <p><strong>Exercise:</strong> Range of Motion</p>
+                <p><strong>Low ROM:</strong> ${session.count}</p>
+                <p><strong>High ROM:</strong> ${session.total_count}</p>
+            `;
+            }
             dateContainer.appendChild(exerciseContainer);
         });
 
