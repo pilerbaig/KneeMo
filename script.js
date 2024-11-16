@@ -369,6 +369,7 @@ function processAlertsData(rows) {
     const painDays = [];
     const incompleteDays = [];
     const sessionsByDate = {};
+    const currentPatientId = localStorage.getItem('selectedPatientID');
 
     // Organize sessions by date and ID
     rows.slice(1).forEach(row => {
@@ -378,7 +379,9 @@ function processAlertsData(rows) {
         if (!sessionsByDate[date]) {
             sessionsByDate[date] = [];
         }
-        sessionsByDate[date].push({ exercise, count, painRating: parseInt(painRating) || 0 });
+        if (id == currentPatientId) {
+            sessionsByDate[date].push({ exercise, count, painRating: parseInt(painRating) || 0 });
+        }
     });
 
     // Check each date for pain and completion status
@@ -407,7 +410,7 @@ function processAlertsData(rows) {
 
         // Record incomplete or missed days
         if (!hasComplete) {
-            if (exercises.length === 0) {
+            if (exercises.length == 0) {
                 incompleteDays.push({ date, status: "Missed" });
             } else {
                 incompleteDays.push({ date, status: "Incomplete" });
