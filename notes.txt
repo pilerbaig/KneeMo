@@ -1,0 +1,10 @@
+11/18:
+
+- add current patient name at the top so that you know who it is                                        P           EOD 11/19
+- come up with list of questions to ask PT                                                              P & E       EOD 11/20
+    - ask users about colour (should be yellow?)
+- read up on general ui/ux principles to make sure we are doing this right !!!                          E           EOD 11/22
+- location of pain as a diagram with buttons instead of just a text box (talk w app inventors)          P & E       EOD 11/20           
+- ask a PT to use the website                                                                           P           after website up
+- get an athena locker for kn.mit.edu                                                                   E           EOD 11/19
+- figure out if presenting live or recorded for website on Kresge                                       P & E       EOD 11/19
