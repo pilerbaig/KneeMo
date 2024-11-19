@@ -22,10 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (page.includes('home_sessions.html')) fetchData(SHEET_NAME_SESSIONS, displayHomeSessions);
     if (page.includes('overall.html')) initializeOverallPage();
+    if (document.getElementById('patient-select-header')) initializePatientDropdown();
 
     // Common page navigation function
     window.navigateTo = (page) => window.location.href = page;
 });
+
+// Fetch and populate the patient dropdown in the header
+function initializePatientDropdown() {
+    fetchData('patients', populatePatientDropdown);
+}
+
+// Populate the dropdown with patient data
+function populatePatientDropdown(rows) {
+    const patientDropdown = document.getElementById('patient-select-header');
+    const selectedPatient = localStorage.getItem('selectedPatientID');
+
+    // Populate the dropdown with patients
+    rows.slice(1).forEach(row => {
+        const [id, name] = row;
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = name;
+        if (id === selectedPatient) {
+            option.selected = true; // Select the currently selected patient
+        }
+        patientDropdown.appendChild(option);
+    });
+
+    // Listen for changes in the dropdown
+    patientDropdown.addEventListener('change', () => {
+        const selectedPatientID = patientDropdown.value;
+        localStorage.setItem('selectedPatientID', selectedPatientID);
+        // Optionally, trigger a reload or action when the patient is changed
+        // alert(`Patient changed to ID: ${selectedPatientID}`);
+    });
+}
 
 // Fetch data from Google Sheets for a specified sheet
 function fetchData(sheetName, callback) {

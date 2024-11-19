@@ -15,6 +15,31 @@ header {
     background-color: #ffeb3b;
     /* True bright yellow */
     padding: 15px;
+    border-bottom: 2px solid #ccc;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.patient-select-container {
+    display: flex;
+    align-items: center;
+}
+
+.patient-select-container label {
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#patient-select-header {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 header .nav-buttons {
