@@ -10,11 +10,19 @@
 
 <body>
     <header>
-        <div class="nav-buttons">
-            <button onclick="navigateTo('index.html')">Dashboard</button>
-            <button onclick="navigateTo('exercises.html')">Exercises</button>
-            <button onclick="navigateTo('progress.html')">Progress</button>
-            <button onclick="alert('Settings feature coming soon!')">Settings</button>
+        <div class="nav-container">
+            <div class="nav-buttons">
+                <button onclick="navigateTo('index.html')">Dashboard</button>
+                <button onclick="navigateTo('exercises.html')">Exercises</button>
+                <button onclick="navigateTo('progress.html')">Progress</button>
+                <button onclick="alert('Settings feature coming soon!')">Settings</button>
+            </div>
+            <div class="patient-select-container">
+                <label for="patient-select-header">Patient:</label>
+                <select id="patient-select-header">
+                    <option value="">--Select Patient--</option>
+                </select>
+            </div>
         </div>
     </header>
 
