@@ -6,6 +6,6 @@
 - read up on general ui/ux principles to make sure we are doing this right !!!                          E           EOD 11/22
 - location of pain as a diagram with buttons instead of just a text box (talk w app inventors)          P & E       EOD 11/20
 - ask a PT to use the website                                                                           P           after website up
-- get an athena locker for kn.mit.edu                                                                   E           EOD 11/19 IN PROGRESS
+- get an athena locker for kn.mit.edu                                                                   E           EOD 11/19 Done / hosting via GitHub
 - figure out if presenting live or recorded for website on Kresge                                       P & E       EOD 11/19 DONE
     - LIVE WITH PANIC BUTTON
