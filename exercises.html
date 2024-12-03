@@ -10,19 +10,23 @@
 
 <body>
     <header>
-        <div class="nav-container">
-            <div class="nav-buttons">
-                <button onclick="navigateTo('index.html')">Dashboard</button>
-                <button onclick="navigateTo('exercises.html')">Exercises</button>
-                <button onclick="navigateTo('progress.html')">Progress</button>
-                <button onclick="alert('Settings feature coming soon!')">Settings</button>
-            </div>
-            <div class="patient-select-container">
-                <label for="patient-select-header">Patient:</label>
-                <select id="patient-select-header">
-                    <option value="">--Select Patient--</option>
-                </select>
-            </div>
+        <div class="back-button">
+            <button onclick="navigateTo('index.html')">← John Doe</button>
+        </div>
+        <nav class="tab-navigation">
+            <button class="tab" onclick="navigateTo('index.html')">Patient History</button>
+            <button class="tab" onclick="navigateTo('home_sessions.html')">Patient History</button>
+            <button class="tab active" onclick="navigateTo('exercises.html')">Current Recovery Program</button>
+            <button class="tab" onclick="navigateTo('progress.html')">Recovery Progress</button>
+        </nav>
+        <div class="patient-select-container">
+            <label for="patient-select-header">Patient:</label>
+            <select id="patient-select-header">
+                <option value="">--Select Patient--</option>
+            </select>
+        </div>
+        <div class="menu-icon">
+            <button onclick="toggleMenu()">☰</button>
         </div>
     </header>
 

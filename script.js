@@ -54,6 +54,7 @@ function populatePatientDropdown(rows) {
     patientDropdown.addEventListener('change', () => {
         const selectedPatientID = patientDropdown.value;
         localStorage.setItem('selectedPatientID', selectedPatientID);
+        location.reload();
         // Optionally, trigger a reload or action when the patient is changed
         // alert(`Patient changed to ID: ${selectedPatientID}`);
     });
@@ -578,4 +579,16 @@ function displayROMChart(romData) {
             }
         }
     });
+}
+
+function switchTab(tabId) {
+    // Remove active class from all tabs and contents
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+    // Add active class to the clicked tab and corresponding content
+    document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+
+
 }
