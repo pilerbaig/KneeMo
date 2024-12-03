@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+
+<body>
+    <header class="folder-header">
+        <div class="back-button">
+            <button onclick="navigateTo('index.html')">← John Doe</button>
+        </div>
+        <nav class="tab-navigation">
+            <button class="tab active" onclick="switchTab('history')">Patient History</button>
+            <button class="tab" onclick="switchTab('recovery')">Current Recovery Program</button>
+            <button class="tab" onclick="switchTab('progress')">Recovery Progress</button>
+        </nav>
+        <div class="menu-icon">
+            <button onclick="toggleMenu()">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="history" class="tab-content active">
+            <h2>Patient History</h2>
+            <!-- Add relevant content here -->
+        </section>
+
+        <section id="recovery" class="tab-content">
+            <h2>Current Recovery Program</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Straight Leg Raises</td>
+                        <td>2 - 3</td>
+                        <td>3 - 5</td>
+                    </tr>
+                    <tr>
+                        <td>Heel Slides</td>
+                        <td>1 - 2</td>
+                        <td>4 - 6</td>
+                    </tr>
+                    <tr>
+                        <td>Prone Knee Bends</td>
+                        <td>2 - 3</td>
+                        <td>5 - 8</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button>Log Pain History</button>
+            <button>Edit Program</button>
+        </section>
+
+        <section id="progress" class="tab-content">
+            <h2>Recovery Progress</h2>
+            <!-- Add relevant content here -->
+        </section>
+    </main>
+
+    <script src="script1.js"></script>
+</body>
+
+</html>
