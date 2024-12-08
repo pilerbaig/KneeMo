@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'WebsiteFont';  /* This is the name you'll use in your CSS */
+    src: url('fonts/myfont.woff2') format('woff2'),
+         url('fonts/myfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Example usage of the font */
+body {
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+
 /* General Body Styling */
 body {
     font-family: Arial, sans-serif;
