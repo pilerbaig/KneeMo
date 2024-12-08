@@ -1,20 +1,39 @@
+/* Define Graphik Regular */
 @font-face {
-    font-family: 'WebsiteFont';  /* This is the name you'll use in your CSS */
-    src: url('fonts/myfont.woff2') format('woff2'),
-         url('fonts/myfont.woff') format('woff');
+    font-family: 'Graphik';
+    src: url('fonts/Graphik-Regular-Trial.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
-/* Example usage of the font */
-body {
-    font-family: 'MyCustomFont', sans-serif;
+/* Define Graphik Semibold */
+@font-face {
+    font-family: 'Graphik';
+    src: url('fonts/Graphik-Semibold-Trial.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
 }
 
+/* Define Graphik Bold */
+@font-face {
+    font-family: 'Graphik';
+    src: url('fonts/Graphik-Bold-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Define Graphik Black */
+@font-face {
+    font-family: 'Graphik';
+    src: url('fonts/Graphik-Black-Trial.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
 
 /* General Body Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Graphik, sans-serif;
+    font-weight: 600;
     margin: 0;
     padding: 0;
     background-color: #fafafa;
@@ -295,7 +314,8 @@ footer button:hover {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Graphik, sans-serif;
+    font-weight: 600;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
