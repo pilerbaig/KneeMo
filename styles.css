@@ -64,12 +64,13 @@ header {
 }
 
 .patient-select-container label {
-    font-size: 14px;
+    font-size: 20px;
     margin-right: 10px;
     font-weight: bold;
 }
 
 #patient-select-header {
+    font-family: Graphik;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -117,13 +118,14 @@ h2 {
 /* Select Dropdown */
 label {
     display: block;
-    font-weight: bold;
+    font-weight: normal;
     margin: 15px 20px 5px 20px;
     color: #333;
 }
 
 #patient-select {
     display: block;
+    font-family: Graphik;
     margin: 0 20px 20px 20px;
     padding: 10px;
     font-size: 16px;
@@ -158,6 +160,8 @@ button:focus {
 
 /* Main Page Buttons */
 button.navigate-button {
+    font-family: Graphik;
+
     margin: 0 20px 20px 20px;
     background-color: #ffeb3b;
     /* Matching main yellow */
