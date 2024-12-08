@@ -33,7 +33,7 @@
 /* General Body Styling */
 body {
     font-family: Graphik, sans-serif;
-    font-weight: 600;
+    font-weight: normal;
     margin: 0;
     padding: 0;
     background-color: #fafafa;
@@ -102,11 +102,16 @@ header .nav-buttons button:hover {
 
 /* Dashboard Header */
 h1 {
+    font-weight: 600;
     color: #000000;
     /* Darker mustard yellow for contrast */
     font-size: 2em;
     margin: 20px;
     text-align: center;
+}
+
+h2 {
+    font-weight: normal;
 }
 
 /* Select Dropdown */
@@ -177,6 +182,7 @@ button.navigate-button:hover {
 
 .date-container h2 {
     color: #000000;
+    font-weight: regular;
     margin-top: 0;
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
